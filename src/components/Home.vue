@@ -14,7 +14,7 @@ let favList = ref([{
 let name: string;
 let posx = ref(0)
 let posy = ref(0)
-let zoom = ref(0)
+let zoom = ref(14)
 let form = ref("satellite-v9")
 let dis = ref()
 const tokenlink = `access_token=${token}`;
@@ -41,8 +41,6 @@ const handleFav = (favName: string ,x: number,y: number,zoom: number) => {
   }
 
     favList.value.push(add);
-
-    name = ""
   
   console.log(favList.value)
 
@@ -57,7 +55,8 @@ const handleFav = (favName: string ,x: number,y: number,zoom: number) => {
 
     <div class="flex flex-row items-center justify-center m-5">
 
-      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="form" @change="handleClick" >
+      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" 
+      v-model="form" @change="handleClick" >
         <option v-for="i in formList" :value=i >{{i}}</option>
       </select>
     
@@ -68,13 +67,13 @@ const handleFav = (favName: string ,x: number,y: number,zoom: number) => {
 
 <div class="flex flex-row items-center justify-center">
     <label>Lattitude </label>
-    <input required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="posy" />
+    <input type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="posy" />
   </div>
   
 
   <div  class="flex flex-row items-center justify-center">
      <label>Longitude </label>
-    <input required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="posx" />
+    <input type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="posx" />
   
   </div>
   <div class="flex flex-col items-center justify-center m-2">
