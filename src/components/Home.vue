@@ -14,7 +14,7 @@ let favList = ref([{
 let name: string;
 let posx = ref(0)
 let posy = ref(0)
-let zoom = ref(14)
+let zoom = ref(11)
 let form = ref("satellite-v9")
 let dis = ref()
 const tokenlink = `access_token=${token}`;
