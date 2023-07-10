@@ -11,10 +11,14 @@ let favList = ref([{
     zoom: 0
 }])
 
+onMounted(() => {
+  handleClick();
+})
+
 let name: string;
 let posx = ref(0)
 let posy = ref(0)
-let zoom = ref(11)
+let zoom = ref(0)
 let form = ref("satellite-v9")
 let dis = ref()
 const tokenlink = `access_token=${token}`;
@@ -55,8 +59,8 @@ const handleFav = (favName: string ,x: number,y: number,zoom: number) => {
 
     <div class="flex flex-row items-center justify-center m-5">
 
-      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" 
-      v-model="form" @change="handleClick" >
+      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" @change="handleClick"
+      v-model="form" >
         <option v-for="i in formList" :value=i >{{i}}</option>
       </select>
     
@@ -67,13 +71,13 @@ const handleFav = (favName: string ,x: number,y: number,zoom: number) => {
 
 <div class="flex flex-row items-center justify-center">
     <label>Lattitude </label>
-    <input type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="posy" />
+    <input type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="posy" @change="handleClick" />
   </div>
   
 
   <div  class="flex flex-row items-center justify-center">
      <label>Longitude </label>
-    <input type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="posx" />
+    <input type="number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2" v-model="posx" @change="handleClick" />
   
   </div>
   <div class="flex flex-col items-center justify-center m-2">
@@ -84,6 +88,7 @@ const handleFav = (favName: string ,x: number,y: number,zoom: number) => {
      min="0" 
      max="22"
      oninput="this.nextElementSibling.value = this.value"
+     @change="handleClick"
     class="
       form-range
       m-2
@@ -102,7 +107,7 @@ const handleFav = (favName: string ,x: number,y: number,zoom: number) => {
   </div>
 </div>
 
-<button class="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" v-on:click="handleClick" >Get Pic</button>
+<!-- <button class="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" v-on:click="handleClick" >Get Pic</button> -->
 <div v-if="dis">
   <div>
     <input type="text" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Name" v-model="name"  />
